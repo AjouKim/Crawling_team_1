@@ -13,6 +13,33 @@ st.header('#01')
 # 일반 텍스트
 st.text('#날짜 표시에 대해서 고민중입니다.')
 
+"""
+# 크롤링한 데이터를 DataFrame으로 가정
+# 예제 데이터 생성
+data = {
+    '제목': ['뉴스 제목 1', '뉴스 제목 2', '뉴스 제목 3', '뉴스 제목 4', '뉴스 제목 5'],
+    '내용': ['긴 뉴스 내용 1'*10, '긴 뉴스 내용 2'*10, '긴 뉴스 내용 3'*10, '긴 뉴스 내용 4'*10, '긴 뉴스 내용 5'*10]
+}
+df = pd.DataFrame(data)
+
+# 텍스트 길이 제한 함수
+def limit_text(text, limit=30):
+    return text[:limit] + ('...' if len(text) > limit else '')
+
+# 데이터 프레임의 내용 열에 적용
+df['내용'] = df['내용'].apply(limit_text)
+
+# Streamlit 앱 생성
+st.title('크롤링한 뉴스')
+
+# 가로 스크롤이 있는 데이터 테이블 표시
+st.dataframe(df)
+
+# 텍스트 줄바꿈 활성화
+st.dataframe(df.style.set_properties(**{'white-space': 'pre-line'}))
+
+# 또는 st.table(df)를 사용하여 테이블을 표시할 수도 있습니다.
+"""
 
 
 # CSV 파일을 읽어와서 데이터 테이블로 노출
