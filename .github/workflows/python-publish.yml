@@ -50,4 +50,5 @@ jobs:
 
     - name: Push changes
       run: |
+        git config --local http.extraHeader "AUTHORIZATION: bearer ${{ secrets.GITHUB_TOKEN }}"
         git push origin main
