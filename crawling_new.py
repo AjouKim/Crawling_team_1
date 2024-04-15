@@ -11,35 +11,36 @@
 # - APScheduler 3.10.4
 # %pip install apscheduler
 # %pip install schedule
+# from apscheduler.schedulers.blocking import BlockingScheduler
+# import schedule
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
 import time
 from selenium.webdriver.common.keys import Keys
-# import schedule
 import time
-from apscheduler.schedulers.blocking import BlockingScheduler
-# 실행할 함수 선언
 
-
-
+# 깃허브에서 크롬 실행하기 위한 import
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
+# 깃허브에서 크롬 실행하기 위한 코드
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-# driver = webdriver.Chrome(options=chrome_options)
 
 #def news_crawling() :
     # (1) 링크 생성 (네이버 뉴스)
     # keyword = input("수집하고자 하는 앱 이름을 입력하세요 :")
-keyword = '"upstage"'
+
+
+keyword = '"ai"'
 url = f'https://search.naver.com/search.naver?where=news&ie=utf8&sm=nws_hty&query={keyword}'
 
-    # (2-1) 브라우저를 
+    # (2-1) 브라우저 실행, 크롬 옵션 넣어주기
 browser = webdriver.Chrome(options=chrome_options)
 time.sleep(3)
 
@@ -47,9 +48,11 @@ time.sleep(3)
 browser.get(url)
 time.sleep(3)
 
-    # (3) 주단위 선택(1주)
+   # (3) 일단위 선택(최신순)
 browser.find_element(By.XPATH, '//*[@id="snb"]/div[1]/div/div[2]/a').click()
-browser.find_element(By.XPATH, '//*[@id="snb"]/div[2]/ul/li[3]/div/div[1]/a[4]').click()
+browser.find_element(By.XPATH, '//*[@id="snb"]/div[2]/ul/li[3]/div/div[1]/a[3]').click() #1일
+browser.find_element(By.XPATH, '//*[@id="snb"]/div[2]/ul/li[1]/div/div/a[2]').click() #최신순
+# browser.find_element(By.XPATH, '//*[@id="snb"]/div[2]/ul/li[3]/div/div[1]/a[4]').click() #1주
 
     # (4) 뉴스기사 스크랩
 parent = browser.find_element(By.CLASS_NAME, "list_news._infinite_list").find_elements(By.CLASS_NAME, "bx")
@@ -72,7 +75,7 @@ for elem in parent:
 
     # (5) 데이터 프레임 및 저장
 df = pd.DataFrame(news_list)
-df.to_csv('upstage.csv', encoding = 'utf-8-sig')
+df.to_csv('AI.csv', encoding = 'utf-8-sig')
 
 
 
