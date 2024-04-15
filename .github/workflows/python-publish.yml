@@ -1,9 +1,14 @@
 name: news_crawling
 
 on:
-  schedule:
-    - cron: "*/10 * * * *" #10분마다 실시
+  # schedule:
+  #   - cron: "*/10 * * * *" #10분마다 실시
   # '0 23 * * *'  # 매일 8시(한국시간기준) 마다 실행
+
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
