@@ -37,8 +37,8 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config --global user.name "ejjang92"
-        git config --global user.email "ej_jang_92@naver.com"
+        git config --global user.name "AjouKim"
+        git config --global user.email "juh0825@gmail.com"
 
     - name: Commit changes
       run: |
@@ -50,5 +50,5 @@ jobs:
 
     - name: Push changes
       run: |
-        git config --local http.extraHeader "AUTHORIZATION: bearer ${{ secrets.GITHUB_TOKEN }}"
+        git config --local http.extraHeader "AUTHORIZATION: bearer ${{ secrets.teamproject }}"
         git push origin main
