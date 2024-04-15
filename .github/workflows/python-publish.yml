@@ -43,7 +43,7 @@ jobs:
       # 커밋메세지 "뉴스데이터 수집"
     - name: Commit changes
       run: |
-        git add upstage.csv
+        git add AI.csv
         git commit -m "뉴스데이터 수집" || echo "No changes to commit"
       
       # 깃헙에 변경된 작업 있을 시 풀 진행 후 csv파일 푸쉬하기 위한 부분, 레퍼지토리에서 풀 권한 부여해줘야 실행됨
